@@ -1,0 +1,88 @@
+site_name: Cinefin
+site_description: Self-hosted home cinema automation and playout
+site_url: https://docs.cinefin.dev/
+repo_url: https://github.com/cinefin/cinefin
+repo_name: cinefin/cinefin
+edit_uri: https://github.com/cinefin/cinefin-docs/edit/main/docs/
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: en
+  font:
+    text: Archivo
+    code: IBM Plex Mono
+  favicon: assets/favicon.png
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.action.edit
+
+extra_css:
+  - assets/extra.css
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+nav:
+  - Home: index.md
+  - Getting started:
+      - getting-started/index.md
+      - Installation: getting-started/installation.md
+      - Quickstart: getting-started/quickstart.md
+
+  - User guide:
+      - Library sync: guide/library-sync.md
+      - Templates: guide/templates.md
+      - Programmes: guide/programmes.md
+      - Scheduling: guide/scheduling.md
+      - Playback: guide/playback.md
+      - System Ident: guide/system-ident.md
+      - Commands & plugins: guide/commands-plugins.md
+  - Reference:
+      - Configuration: reference/configuration.md
+      - Environment variables: reference/environment.md
+      - REST API: reference/api.md
+  - About:
+      - Contributing: about/contributing.md
+      - License: about/license.md
