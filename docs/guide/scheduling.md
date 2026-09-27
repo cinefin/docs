@@ -10,7 +10,7 @@ to start. It works whether or not a browser is open.
 
 Because the screening state lives in the web app process, run the web app as a
 single process - never add workers. Docker's image already does; see
-[Installation](../getting-started/installation.md) for the manual command.
+[Installation](../getting-started/installation.mdx) for the manual command.
 
 ## Book a screening
 

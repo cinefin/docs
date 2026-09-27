@@ -1,0 +1,139 @@
+# Installation
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## 1. Install the server
+
+On Linux you can install the Cinefin server with **Docker** (recommended) or
+with **pipx** from a self-contained wheel.
+
+:::note[Windows]
+
+A native Windows installer for the server exists but is **experimental** and
+currently published only on the `edge` (development) channel. On Windows the
+server runs; playout still happens on a separate agent machine.
+
+:::
+
+<Tabs>
+<TabItem value="docker-recommended" label="Docker (recommended)" default>
+
+Docker is the recommended way to run Cinefin. The Docker files live in the
+`docker/` directory, so run Compose from there.
+
+Get the files, then build and start the web app. The one value most setups
+need is your box's address, `CINEFIN_SERVER_URL`:
+
+```bash
+git clone https://github.com/cinefin/cinefin.git cinefin
+cd cinefin/docker
+CINEFIN_SERVER_URL=http://cinema.local:8000 docker compose up -d --build
+```
+
+Use `http://localhost:8000` when the browser and player are on the same
+machine. Open that address; the setup wizard should appear. Cinefin creates
+and migrates its database on first start, and generates and persists its
+secret key under `./userdata` on its own. These are the commands you will use
+most:
+
+```bash
+docker compose up -d                          # start again
+docker compose logs -f web                    # watch the log
+docker compose pull && docker compose up -d   # update a published image
+docker compose down                           # stop, keeps your data
+```
+
+To skip building locally, replace the `build:` block for `web` in
+`docker-compose.yml` with `image: ghcr.io/cinefin/cinefin:latest`, then
+run `docker compose pull && docker compose up -d`. Use the `:edge` tag only
+if you want the newest development build rather than a release.
+
+Put any other settings in a `.env` file next to `docker-compose.yml`, or in
+the `web` service's environment. See
+[Environment variables](../reference/environment.md) for the full list.
+
+All runtime data (the database, uploaded media, generated cards and the
+secret key) lives under one directory, `./userdata`, mounted at
+`/app/userdata`. Back up that one directory, or use **Settings → Backup &
+restore**.
+
+</TabItem>
+<TabItem value="pipx-linux" label="pipx (Linux)">
+
+Run the server from a self-contained wheel - no Docker, no source tree. The
+wheel bundles the web interface and its static assets; only **ffmpeg** is an
+optional system dependency (certification and title cards need it).
+
+#### 1. Install ffmpeg
+
+<Tabs>
+<TabItem value="arch-linux" label="Arch Linux" default>
+
+```bash
+sudo pacman -S ffmpeg
+```
+
+</TabItem>
+<TabItem value="debian-ubuntu" label="Debian / Ubuntu">
+
+```bash
+sudo apt install ffmpeg
+```
+
+</TabItem>
+</Tabs>
+
+#### 2. Install the wheel
+
+Install with [pipx](https://pipx.pypa.io/) from the wheel attached to a
+[release](https://github.com/cinefin/cinefin/releases) (pass the URL or a
+downloaded file):
+
+```bash
+pipx install https://github.com/cinefin/cinefin/releases/latest/download/cinefin3-<version>-py3-none-any.whl
+```
+
+#### 3. Run it
+
+```bash
+cinefin            # apply migrations, then serve on 0.0.0.0:8000
+```
+
+Open `http://localhost:8000/app/`; the setup wizard should appear. Two
+sub-commands exist: `cinefin serve` (migrate + serve, the default) and
+`cinefin migrate` (migrate then exit).
+
+Configure it with [environment variables](../reference/environment.md).
+`CINEFIN_HOST` and `CINEFIN_PORT` set the bind address (default
+`0.0.0.0:8000`); `CINEFIN_USERDATA_DIR` sets where all runtime data lives (the
+database, media, secret key and logs), defaulting to `~/.local/share/cinefin`.
+Back up that directory, or use **Settings → Backup & restore**.
+
+Keep it to a **single process**: the schedule runner and playout state are
+per-process. To run it on boot, wrap `cinefin` in a systemd **user** service
+of your own under `~/.config/systemd/user/`.
+
+:::tip[Running from source]
+
+Installing from a Git checkout with Poetry (build the SPA under
+`frontend/`, run everything else from `backend/`) is aimed at
+development. See [Contributing](../about/contributing.md).
+
+:::
+
+</TabItem>
+</Tabs>
+
+## 2. Set up playback
+
+See [Playback](../guide/playback.mdx) for instructions on installing and using
+the Cinefin playout agent, or connecting an MPV instance to the server.
+
+## 3. First start
+
+Open `http://localhost:8000/` in a browser. The setup wizard should appear and
+walk you through the cinema name, an optional login password, and the playout
+host.
+
+Next: [Quickstart](quickstart.md).

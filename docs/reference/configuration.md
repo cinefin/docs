@@ -30,4 +30,4 @@ directory lives, the address the playout machine uses to reach Cinefin, and the
 allowed browser hosts. Set these through the environment. See:
 
 - [Environment variables](environment.md)
-- [Installation](../getting-started/installation.md)
+- [Installation](../getting-started/installation.mdx)

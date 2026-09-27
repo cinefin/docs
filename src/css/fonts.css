@@ -1,0 +1,13 @@
+/* The interface's own faces (cinefin/frontend/src/lib/assets/fonts), bundled
+   locally per the spec's no-CDN rule. Tilt Warp names; Archivo explains;
+   IBM Plex Mono measures. Archivo is one variable file (400-600). */
+@font-face { font-family: 'Tilt Warp'; font-style: normal; font-weight: 400; font-display: swap; src: url('../fonts/tilt-warp-400.woff2') format('woff2'); }
+@font-face { font-family: 'Archivo'; font-style: normal; font-weight: 400 600; font-display: swap; src: url('../fonts/archivo.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('../fonts/plex-mono-400.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url('../fonts/plex-mono-500.woff2') format('woff2'); }
+
+/* Name each family literally at least once: the CSS minifier drops any
+   @font-face it can't see used, and it can't see through var(). */
+html { font-family: 'Archivo', sans-serif; }
+code, kbd, pre, samp { font-family: 'IBM Plex Mono', monospace; }
+.navbar__title, .site-footer__name { font-family: 'Tilt Warp', sans-serif; }

@@ -9,16 +9,16 @@ new titles pulled in.
 A library reads from one media server. Open **Settings → Library source** and use
 the **Source** tab.
 
-<figure markdown="span">
-  ![The Library source settings, Source tab, with a connected server](../assets/img/library-sync.png)
+<figure>
+  ![The Library source settings, Source tab, with a connected server](../img/library-sync.png)
   <figcaption>The Source tab, showing a connected server and its last sync.</figcaption>
 </figure>
 
 If nothing is connected yet, choose your server type and fill in the form. To
 change an existing connection, open **More → Edit source**.
 
-<figure markdown="span">
-  ![The edit-source form with server URL, API token and libraries](../assets/img/library-sync-add-source.png)
+<figure>
+  ![The edit-source form with server URL, API token and libraries](../img/library-sync-add-source.png)
   <figcaption>Connecting a Jellyfin or Plex server.</figcaption>
 </figure>
 
@@ -55,8 +55,8 @@ in missing metadata during a sync, and it powers trailer discovery. A free key
 from [themoviedb.org](https://www.themoviedb.org/) is enough. This tab also sets
 the maximum trailer download quality.
 
-<figure markdown="span">
-  ![The Metadata tab with the TMDB key and trailer quality](../assets/img/library-sync-metadata.png)
+<figure>
+  ![The Metadata tab with the TMDB key and trailer quality](../img/library-sync-metadata.png)
   <figcaption>The TMDB key enriches films and powers trailer search.</figcaption>
 </figure>
 

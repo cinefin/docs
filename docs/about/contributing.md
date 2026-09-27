@@ -39,11 +39,12 @@ cd ../frontend && npm run check           # frontend type check
 
 ## These docs
 
-The docs are built with [MkDocs Material](https://squidfunk.github.io/mkdocs-material/):
+The docs are built with [Docusaurus](https://docusaurus.io/) and need Node.js
+20 or newer:
 
 ```bash
-pip install -r requirements.txt
-mkdocs serve
+npm ci
+npm start
 ```
 
-Edit the Markdown under `docs/` and preview at `http://127.0.0.1:8000/`.
+Edit the Markdown under `docs/` and preview at `http://localhost:3000/`.

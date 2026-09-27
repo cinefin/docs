@@ -2,7 +2,7 @@
 
 New to Cinefin? Read these pages in order:
 
-1. **[Installation](installation.md)**: install the Cinefin server and playout
+1. **[Installation](installation.mdx)**: install the Cinefin server and playout
    agent.
 2. **[Quickstart](quickstart.md)**: connect a media server, build a programme and run a screening.
 

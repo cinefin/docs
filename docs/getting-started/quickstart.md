@@ -22,7 +22,7 @@ pick between them when you add a playout host (in the wizard, or under **Setting
 - **Local MPV** - if you already run MPV on the same machine as Cinefin, start it
   with a JSON-IPC socket and point Cinefin at the socket path instead.
 
-See [Playback](../guide/playback.md) for both in full.
+See [Playback](../guide/playback.mdx) for both in full.
 
 ## 3. Add your movies
 
@@ -62,4 +62,4 @@ Cue the programme, then start playout. To play it later, book it under
 
 - [Programmes](../guide/programmes.md): templates, block types and title cards.
 - [Scheduling](../guide/scheduling.md): how booked screenings start.
-- [Playback](../guide/playback.md): the playout agent and the controls.
+- [Playback](../guide/playback.mdx): the playout agent and the controls.

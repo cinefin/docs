@@ -13,8 +13,8 @@ turns it into real, fixed media for one showing.
 Open **Programmes** to see every screening you have built, with its runtime,
 item count and when it last played.
 
-<figure markdown="span">
-  ![The programmes list with runtime, item and last-played columns](../assets/img/programmes-list.png)
+<figure>
+  ![The programmes list with runtime, item and last-played columns](../img/programmes-list.png)
   <figcaption>Every built programme, newest first.</figcaption>
 </figure>
 
@@ -44,8 +44,8 @@ by block, with a badge for each type (feature, trailer, user media,
 certification, command, and so on) and how many playlist entries each block
 produced.
 
-<figure markdown="span">
-  ![A programme rundown with each block resolved into playlist entries](../assets/img/programme-rundown.png)
+<figure>
+  ![A programme rundown with each block resolved into playlist entries](../img/programme-rundown.png)
   <figcaption>The rundown shows every block resolved into playlist entries.</figcaption>
 </figure>
 
@@ -54,7 +54,7 @@ rather than failing silently - the block is skipped at play time until you edit
 the programme to replace it.
 
 From this page you can **Cue &amp; open console** to load the programme and jump to
-[playback](playback.md), **Schedule** it for a showtime (see
+[playback](playback.mdx), **Schedule** it for a showtime (see
 [scheduling](scheduling.md)), **Edit** it, **Regenerate** the playlist, or delete
 it. The **Tickets** and **Title screen** tabs preview the printed ticket and the
 generated title card.
@@ -65,8 +65,8 @@ generated title card.
 and use each block's controls to duplicate, remove, or move it. **Add block**
 lists every block type:
 
-<figure markdown="span">
-  ![The programme block editor with the Add block palette open](../assets/img/programme-editor.png)
+<figure>
+  ![The programme block editor with the Add block palette open](../img/programme-editor.png)
   <figcaption>Reorder by dragging; add blocks from the palette on the right.</figcaption>
 </figure>
 

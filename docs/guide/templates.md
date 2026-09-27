@@ -14,8 +14,8 @@ trailers matched to tonight's films, the certification cards, then the features.
 Open **Templates** to see every template, how many features it schedules, and a
 one-line summary of its structure.
 
-<figure markdown="span">
-  ![The templates list with feature counts and structure summaries](../assets/img/templates-list.png)
+<figure>
+  ![The templates list with feature counts and structure summaries](../img/templates-list.png)
   <figcaption>Each template with its feature count and structure.</figcaption>
 </figure>
 
@@ -30,8 +30,8 @@ what they will become - a trailer rule reads "3 trailers matching genre, rating"
 a random user media block reads "one clip", and each **Feature** block is a
 placeholder "filled when a programme is built from this template".
 
-<figure markdown="span">
-  ![A template's running order, showing feature placeholders and rules](../assets/img/template-detail.png)
+<figure>
+  ![A template's running order, showing feature placeholders and rules](../img/template-detail.png)
   <figcaption>Feature blocks are placeholders; rules resolve when you build a programme.</figcaption>
 </figure>
 
@@ -103,8 +103,8 @@ handle to reorder them (or select one and use **Alt + ↑ / ↓**), duplicate or
 remove them, and add new ones from the **Add item** palette. Press **?** for the
 full keyboard shortcuts.
 
-<figure markdown="span">
-  ![The template block editor with the Add item palette open](../assets/img/template-editor.png)
+<figure>
+  ![The template block editor with the Add item palette open](../img/template-editor.png)
   <figcaption>Arrange blocks and set each one's rules; the film comes later.</figcaption>
 </figure>
 

@@ -1,0 +1,697 @@
+/* ============================================================
+   Cinefin docs, set to the Interface Spec v2
+   (cinefin/docs/cinefin-ui-spec.html).
+
+   The room: near-black and cool, depth as a ladder of light rather
+   than shadows. Hairline borders, square architecture, 2px only on
+   what you press. Blue is the one interactive colour; green, amber
+   and crimson appear only as facts. Tilt Warp names, Archivo
+   explains, IBM Plex Mono measures. Hover is a change of light,
+   never a displacement.
+   ============================================================ */
+
+/* ── Tokens: dark, the default room ── */
+:root,
+html[data-theme="dark"] {
+  --shell: #05060a;
+  --bg: #07090e;
+  --surface-1: #0e1118;
+  --surface-2: #151a24;
+  --surface-3: #1d2330;
+  --border: #222939;
+  --border-strong: #333d52;
+  --text: #eef1f7;
+  --muted: #9aa3b6;
+  --faint: #687187;
+
+  --ch-b: #3a7bff;
+  --ch-g: #25e88a;
+  --danger: #d9364a;
+  --warning: #e8b93b;
+  --system: #7e899c;
+  --link: #6f9dff;
+  --link-hover: #a9c1ff;
+
+  --grain: 0.045;
+  --falloff: radial-gradient(120% 90% at 50% 0%, transparent 55%, rgba(0, 0, 0, 0.38) 100%);
+}
+
+/* ── Tokens: light, cool paper (spec R3) ── */
+html[data-theme="light"] {
+  --shell: #e3e6ee;
+  --bg: #eff1f6;
+  --surface-1: #fafbfd;
+  --surface-2: #eff2f7;
+  --surface-3: #e3e7f0;
+  --border: #d5dae6;
+  --border-strong: #a7b0c4;
+  --text: #1c2230;
+  --muted: #59627a;
+  --faint: #8890a6;
+
+  --ch-b: #2d6be0;
+  --ch-g: #12b869;
+  --danger: #c22a3c;
+  --warning: #a67c14;
+  --system: #5a6478;
+  --link: #2d6be0;
+  --link-hover: #1f4fae;
+
+  /* The film grain and radial falloff switch off here. */
+  --grain: 0;
+  --falloff: none;
+}
+
+:root {
+  --r-control: 2px;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-tap: 120ms;
+  --dur-ui: 220ms;
+  --display: "Tilt Warp", sans-serif;
+  --body: Archivo, sans-serif;
+  --mono: "IBM Plex Mono", monospace;
+
+  /* Infima, mapped onto the tokens */
+  --ifm-font-family-base: var(--body);
+  --ifm-font-family-monospace: var(--mono);
+  --ifm-heading-font-family: var(--body);
+  --ifm-heading-font-weight: 600;
+  --ifm-font-size-base: 15px;
+  --ifm-line-height-base: 1.65;
+  --ifm-global-radius: 0;
+  --ifm-button-border-radius: var(--r-control);
+  --ifm-code-border-radius: var(--r-control);
+  --ifm-code-font-size: 85%;
+  --ifm-global-shadow-lw: none;
+  --ifm-global-shadow-md: none;
+  --ifm-global-shadow-tl: none;
+}
+
+:root,
+html[data-theme] {
+  --ifm-color-primary: var(--ch-b);
+  --ifm-color-primary-dark: color-mix(in oklab, var(--ch-b) 90%, black);
+  --ifm-color-primary-darker: color-mix(in oklab, var(--ch-b) 85%, black);
+  --ifm-color-primary-darkest: color-mix(in oklab, var(--ch-b) 75%, black);
+  --ifm-color-primary-light: color-mix(in oklab, var(--ch-b) 90%, white);
+  --ifm-color-primary-lighter: color-mix(in oklab, var(--ch-b) 85%, white);
+  --ifm-color-primary-lightest: color-mix(in oklab, var(--ch-b) 75%, white);
+
+  --ifm-background-color: var(--bg);
+  --ifm-background-surface-color: var(--surface-1);
+  --ifm-font-color-base: var(--text);
+  --ifm-heading-color: var(--text);
+  --ifm-color-content: var(--text);
+  --ifm-color-content-secondary: var(--muted);
+  --ifm-link-color: var(--link);
+  --ifm-link-hover-color: var(--link-hover);
+  --ifm-link-hover-decoration: underline;
+  --ifm-hr-background-color: var(--border);
+  --ifm-toc-border-color: var(--border);
+  --ifm-table-border-color: var(--border);
+  --ifm-table-stripe-background: transparent;
+  --ifm-table-head-background: transparent;
+  --ifm-code-background: var(--surface-2);
+  --ifm-color-emphasis-200: var(--surface-2);
+  --ifm-color-emphasis-300: var(--border);
+
+  --ifm-navbar-height: 3.55rem;
+  --ifm-navbar-background-color: color-mix(in oklab, var(--shell) 88%, transparent);
+  --ifm-navbar-shadow: none;
+  --ifm-navbar-link-color: var(--muted);
+  --ifm-navbar-link-hover-color: var(--text);
+  --ifm-navbar-padding-horizontal: 1.75rem;
+
+  --ifm-menu-color: var(--muted);
+  --ifm-menu-color-active: var(--text);
+  --ifm-menu-color-background-active: transparent;
+  --ifm-menu-color-background-hover: var(--surface-1);
+
+  --docusaurus-highlighted-code-line-bg: color-mix(in oklab, var(--ch-b) 14%, transparent);
+  --docusaurus-collapse-button-bg: transparent;
+  --docusaurus-collapse-button-bg-hover: var(--surface-1);
+}
+
+html[data-theme="dark"] { color-scheme: dark; }
+html[data-theme="light"] { color-scheme: light; }
+
+/* The room falls away at the edges. */
+html {
+  background: var(--bg);
+}
+body {
+  color: var(--text);
+  background-image: var(--falloff);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+.room-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: var(--grain);
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background: var(--ch-b);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ch-b);
+  outline-offset: 2px;
+}
+
+/* ── The bar ── */
+.navbar {
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.navbar__brand {
+  gap: 0.68rem;
+  color: var(--text);
+  transition: color var(--dur-ui) var(--ease);
+}
+/* The mark rests fully lit; as a home link its hover takes the blue channel. */
+.navbar__brand:hover {
+  color: var(--ch-b);
+  text-decoration: none;
+}
+.navbar__logo {
+  height: 33.6px;
+  margin-right: 0;
+}
+.navbar__logo img {
+  height: 100%;
+  width: auto;
+}
+.navbar__title {
+  font: 400 1.3rem/1 var(--display);
+}
+.navbar__items--right {
+  gap: 0.15rem;
+}
+.navbar__items--right > .navbar__link {
+  position: relative;
+  padding: 0.32rem 0.6rem;
+  font-size: 0.84rem;
+  font-weight: 500;
+  transition: color var(--dur-ui) var(--ease);
+}
+.navbar__items--right > .navbar__link:hover {
+  text-decoration: none;
+}
+/* Active nav: a blue underline. Red is too precious to spend on navigation. */
+.navbar__link--active {
+  color: var(--text);
+}
+.navbar__items--right > .navbar__link--active::after {
+  content: "";
+  position: absolute;
+  left: 0.6rem;
+  right: 0.6rem;
+  bottom: -0.72rem;
+  height: 2px;
+  background: var(--ch-b);
+}
+.navbar__items--right > .navbar__link svg {
+  display: none;
+}
+.navbar-sidebar {
+  background: var(--bg);
+}
+.navbar-sidebar__brand {
+  border-bottom: 1px solid var(--border);
+  box-shadow: none;
+}
+
+/* Colour-mode toggle as a ghost control. */
+.navbar [class*="colorModeToggle"] button {
+  width: 2rem;
+  height: 2rem;
+  color: var(--faint);
+  border-radius: var(--r-control);
+  transition: color var(--dur-tap) var(--ease), background var(--dur-tap) var(--ease);
+}
+.navbar [class*="colorModeToggle"] button:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+.navbar [class*="colorModeToggle"] svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Search, as the spec's text field. */
+.navbar__search-input {
+  width: 12rem;
+  height: 2rem;
+  padding-left: 2rem;
+  color: var(--text);
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-control);
+  font: 400 0.84rem var(--body);
+  transition: border-color var(--dur-ui) var(--ease);
+}
+.navbar__search-input::placeholder {
+  color: var(--faint);
+}
+.navbar__search-input:focus {
+  border-color: var(--ch-b);
+  outline: none;
+}
+[class*="searchBar"] kbd {
+  color: var(--faint);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--r-control);
+  box-shadow: none;
+  font: 400 0.68rem var(--mono);
+}
+[class*="searchBar"] [class*="dropdownMenu"] {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* ── Footer ── */
+.site-footer {
+  padding: 1.4rem 1.75rem;
+  background: var(--shell);
+  border-top: 1px solid var(--border);
+}
+.site-footer__row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+.site-footer__row img {
+  display: block;
+  height: 26px;
+  width: auto;
+}
+.site-footer__name {
+  font: 400 1.3rem/1 var(--display);
+}
+.site-footer__links {
+  display: flex;
+  gap: 1.1rem;
+  margin-left: auto;
+}
+.site-footer__links a {
+  color: var(--muted);
+  font-size: 0.78rem;
+  transition: color var(--dur-ui) var(--ease);
+}
+.site-footer__links a:hover {
+  color: var(--ch-b);
+  text-decoration: none;
+}
+@media (max-width: 38rem) {
+  .site-footer { padding-inline: 1rem; }
+  .site-footer__row { align-items: flex-start; }
+  .site-footer__links { flex-direction: column; gap: 0.25rem; }
+}
+
+/* ── Sidebar ── */
+.theme-doc-sidebar-container {
+  border-right-color: var(--border) !important;
+}
+.theme-doc-sidebar-menu {
+  font-size: 0.9rem;
+}
+.menu__link {
+  border-radius: 0;
+  transition: color var(--dur-tap) var(--ease), background var(--dur-tap) var(--ease);
+}
+/* Section labels: sentence-case Archivo, one step back — not tracked caps. */
+.theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link {
+  margin-top: 1.2rem;
+  padding-block: 0.2rem;
+  color: var(--faint);
+  font-size: 0.78rem;
+  font-weight: 500;
+  background: none !important;
+  cursor: default;
+}
+.theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible:hover {
+  background: none;
+}
+.theme-doc-sidebar-item-category-level-1 > .menu__list {
+  margin-top: 0.15rem;
+  padding-left: 0;
+}
+.theme-doc-sidebar-item-link > .menu__link--active {
+  font-weight: 500;
+  box-shadow: inset 2px 0 0 var(--ch-b);
+}
+
+/* ── Content ── */
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+.markdown h1 {
+  font-size: 2.2rem;
+  line-height: 1.15;
+}
+.markdown h2 {
+  margin-top: 2.6rem;
+  font-size: 1.45rem;
+}
+.markdown h3 {
+  font-size: 1.15rem;
+}
+.markdown h4 {
+  font-size: 1rem;
+}
+.markdown strong {
+  font-weight: 600;
+}
+.markdown a {
+  text-underline-offset: 0.16em;
+}
+.hash-link {
+  color: var(--faint);
+}
+
+code {
+  border: 0;
+  padding: 0.08rem 0.32rem;
+  vertical-align: baseline;
+}
+
+/* Code blocks: a plain bordered panel, square. */
+.theme-code-block {
+  border: 1px solid var(--border);
+  border-radius: 0;
+  box-shadow: none;
+}
+.theme-code-block pre {
+  border-radius: 0;
+}
+.theme-code-block [class*="codeBlockTitle"] {
+  color: var(--muted);
+  font: 500 0.8rem var(--body);
+  border-bottom: 1px solid var(--border);
+}
+.theme-code-block button {
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-control);
+  background: var(--surface-2);
+}
+
+/* Tables: the spec's comparison table. */
+table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+table tr,
+table td,
+table th {
+  border: 0;
+  background: none;
+}
+table thead tr {
+  border-bottom: 1px solid var(--border-strong);
+}
+table th {
+  padding: 0.5rem 0.9rem 0.5rem 0;
+  color: var(--faint);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-align: left;
+}
+table td {
+  padding: 0.6rem 0.9rem 0.6rem 0;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Admonitions: a card with a header strip — a lamp beside plain words. */
+.theme-admonition {
+  --lamp: var(--system);
+  padding: 0;
+  color: var(--text);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  box-shadow: none;
+}
+.theme-admonition.alert--info { --lamp: var(--ch-b); }
+.theme-admonition.alert--success { --lamp: var(--ch-g); }
+.theme-admonition.alert--warning { --lamp: var(--warning); }
+.theme-admonition.alert--danger { --lamp: var(--danger); }
+.theme-admonition [class*="admonitionHeading"] {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0.55rem 0.9rem;
+  color: var(--muted);
+  font: 500 0.8rem var(--body);
+  text-transform: none;
+  border-bottom: 1px solid var(--border);
+}
+.theme-admonition [class*="admonitionIcon"] {
+  display: inline-flex;
+  margin: 0;
+}
+/* Statuses are lamps: a square exposure, not an icon or a dot. */
+.theme-admonition [class*="admonitionIcon"] svg {
+  display: none;
+}
+.theme-admonition [class*="admonitionIcon"]::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: var(--lamp);
+}
+.theme-admonition [class*="admonitionContent"] {
+  padding: 0.75rem 0.9rem;
+}
+.theme-admonition a {
+  color: var(--link);
+  text-decoration: underline;
+}
+.theme-admonition a:hover {
+  color: var(--link-hover);
+}
+
+/* Tabs: Archivo, sentence case, a blue underline on the active tab. */
+.tabs-container {
+  margin-top: 1.5rem;
+}
+.tabs {
+  gap: 0.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.tabs__item {
+  position: relative;
+  padding: 0.5rem 0.9rem 0.65rem;
+  color: var(--muted);
+  font: 500 0.85rem var(--body);
+  border: 0;
+  border-radius: var(--r-control) var(--r-control) 0 0;
+  transition: color var(--dur-ui) var(--ease), background var(--dur-tap) var(--ease);
+}
+.tabs__item:hover {
+  color: var(--text);
+  background: var(--surface-1);
+}
+.tabs__item::after {
+  content: "";
+  position: absolute;
+  left: 0.6rem;
+  right: 0.6rem;
+  bottom: -1px;
+  height: 2px;
+  background: var(--ch-b);
+  transform: scaleX(0);
+  transition: transform var(--dur-ui) var(--ease);
+}
+.tabs__item.tabs__item--active {
+  color: var(--text);
+  border: 0;
+}
+.tabs__item--active::after {
+  transform: scaleX(1);
+}
+.tabs-container > .margin-top--md {
+  margin-top: 1.35rem !important;
+}
+
+/* Screenshots: artwork is square; a hairline, no frame or shadow. */
+.markdown figure {
+  margin: 1.75rem 0;
+}
+.markdown figure img {
+  display: block;
+  max-width: 100%;
+  border: 1px solid var(--border);
+}
+.markdown figcaption {
+  padding-top: 0.55rem;
+  color: var(--faint);
+  font-size: 0.82rem;
+}
+
+/* Mermaid, drawn in the room's own ladder. */
+.docusaurus-mermaid-container svg .node rect,
+.docusaurus-mermaid-container svg .node polygon {
+  fill: var(--surface-1) !important;
+  stroke: var(--border-strong) !important;
+}
+.docusaurus-mermaid-container svg .nodeLabel,
+.docusaurus-mermaid-container svg .edgeLabel {
+  color: var(--text) !important;
+  font-family: var(--body) !important;
+}
+.docusaurus-mermaid-container svg .edgeLabel,
+.docusaurus-mermaid-container svg .edgeLabel p,
+.docusaurus-mermaid-container svg .edgeLabel rect,
+.docusaurus-mermaid-container svg .labelBkg {
+  background: var(--bg) !important;
+  background-color: var(--bg) !important;
+  fill: var(--bg) !important;
+  color: var(--muted) !important;
+}
+/* No shadows in this room — depth is luminance. */
+.docusaurus-mermaid-container svg * {
+  filter: none !important;
+}
+.docusaurus-mermaid-container svg .flowchart-link {
+  stroke: var(--faint) !important;
+}
+.docusaurus-mermaid-container svg marker path {
+  fill: var(--faint) !important;
+  stroke: var(--faint) !important;
+}
+
+/* Breadcrumbs, TOC, prev/next, edit link. */
+.breadcrumbs__link {
+  padding: 0.2rem 0.4rem;
+  color: var(--faint);
+  background: none !important;
+  font-size: 0.8rem;
+  border-radius: var(--r-control);
+}
+.breadcrumbs__link:hover {
+  color: var(--text);
+}
+.breadcrumbs__item--active .breadcrumbs__link {
+  color: var(--muted);
+}
+.table-of-contents {
+  font-size: 0.82rem;
+}
+.table-of-contents__link {
+  color: var(--muted);
+}
+.table-of-contents__link:hover {
+  color: var(--text);
+  text-decoration: none;
+}
+.table-of-contents__link--active {
+  color: var(--text);
+}
+.pagination-nav__link {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  transition: background var(--dur-tap) var(--ease), border-color var(--dur-ui) var(--ease);
+}
+.pagination-nav__link:hover {
+  background: var(--surface-2);
+  border-color: var(--border-strong);
+}
+.pagination-nav__sublabel {
+  color: var(--faint);
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+.pagination-nav__label {
+  color: var(--text);
+  font-weight: 600;
+}
+.theme-edit-this-page {
+  color: var(--faint);
+  font-size: 0.84rem;
+}
+.theme-edit-this-page:hover {
+  color: var(--ch-b);
+}
+
+/* Buttons: the spec's controls. Hover and press change the light only. */
+.button {
+  padding: 0.5rem 1rem;
+  font: 500 0.88rem var(--body);
+  border: 1px solid var(--border-strong);
+  transition: background var(--dur-tap) var(--ease), border-color var(--dur-tap) var(--ease);
+}
+.button--primary {
+  color: #fff;
+  background: var(--ch-b);
+  border-color: transparent;
+}
+.button--primary:hover {
+  color: #fff;
+  background: color-mix(in oklab, var(--ch-b) 85%, white);
+}
+.button--primary:active {
+  background: color-mix(in oklab, var(--ch-b) 80%, black);
+}
+.button.button--secondary {
+  color: var(--text);
+  background: var(--surface-2);
+}
+.button.button--secondary:hover {
+  color: var(--text);
+  background: var(--surface-3);
+}
+.button--secondary:active {
+  background: var(--shell);
+}
+
+/* ── Docs home ── */
+.docs-hero {
+  padding: 1.25rem 0 0.75rem;
+}
+.docs-hero h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  line-height: 1.12;
+}
+.docs-lede {
+  max-width: 62ch;
+  margin-top: 1rem;
+  color: var(--muted);
+  font-size: 1.02rem;
+}
+.docs-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.5rem 0 1.25rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+  }
+}

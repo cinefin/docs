@@ -17,13 +17,13 @@ have uploaded to **Media**, or leave it on the built-in clip Cinefin ships.
 **Play on player now** puts it on the live screen straight away, so you can check
 it in the room.
 
-<figure markdown="span">
-  ![The System Ident control under Settings, Playout, Player](../assets/img/idle-ident.png)
+<figure>
+  ![The System Ident control under Settings, Playout, Player](../img/idle-ident.png)
   <figcaption>The System Ident is set per playout host, in the Idle & ident section.</figcaption>
 </figure>
 
 The clip streams from Cinefin to the playout host, so there is no file to copy to
-the playout machine (see [Playback](playback.md#set-up-a-player)). It saves with
+the playout machine (see [Playback](playback.mdx#set-up-a-player)). It saves with
 the rest of the host's settings; because it is baked into the player's idle
 state, restart the player to apply a change to the idle screen.
 
